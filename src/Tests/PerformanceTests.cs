@@ -22,7 +22,7 @@ namespace Tests
             var linqOutput = input.Select(x => x + 1).Where(x => x%2 == 0).Take(100000).Aggregate(0, (x, y) => x + y);
             trSw.Stop();
             var linqTime = trSw.ElapsedMilliseconds;
-            Assert.AreEqual(trOutput, linqOutput);
+            Assert.That(trOutput, Is.EqualTo(linqOutput));
         }
 
         private IEnumerable<int> UpTo(int n)

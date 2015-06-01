@@ -11,3 +11,6 @@ If you are interested in transducers for .NET, you might also like to look at Br
 which takes a slightly different approach, and has the advantage of some documentation. For more on
 transducers in general see the [Clojure documentation](http://clojure.org/transducers), or [Rich
 Hickey's video](https://www.youtube.com/watch?v=6mTbuzafcII) explaining them.
+
+The main library is written in C#5 and should work in VS2013 and above. The Tests use the new
+C# "using static" statement, so only work with VS2015 and above.

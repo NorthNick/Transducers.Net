@@ -33,13 +33,13 @@ namespace Transducers.Net
             return x => fn1(fn2(x));
         }
 
-        public static TAcc Transduce<TAcc, TSource>(this IEnumerable<TSource> source,
-            Func<IReducer<TAcc, TSource>, IReducer<TAcc, TSource>> transducer, Func<TAcc, TSource, TAcc> reducer, TAcc seed)
+        public static TAcc Transduce<TAcc, TIn, TOut>(this IEnumerable<TIn> source,
+            Func<IReducer<TAcc, TOut>, IReducer<TAcc, TIn>> transducer, Func<TAcc, TOut, TAcc> reducer, TAcc seed)
         {
             var sourceEnum = source.GetEnumerator();
             var status = new ReductionStatus();
             var res = seed;
-            var red = transducer(new Reducer<TAcc, TSource>(status, reducer));
+            var red = transducer(new Reducer<TAcc, TOut>(status, reducer));
             while (!status.Complete && sourceEnum.MoveNext()) {
                 res = red.Apply(res, sourceEnum.Current);
             }
