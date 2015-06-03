@@ -40,13 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IReducer.cs" />
+    <Compile Include="ComposeTransducer.cs" />
+    <Compile Include="PrefixTransducer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reducer.cs" />
     <Compile Include="ReductionStatus.cs" />
+    <Compile Include="SelectTransducer.cs" />
     <Compile Include="Store.cs" />
+    <Compile Include="ITransducer.cs" />
     <Compile Include="Transducers.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="WhereTransducer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
