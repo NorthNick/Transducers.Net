@@ -11,7 +11,7 @@ namespace Transducers.Net
             _selector = selector;
         }
 
-        public Func<TAcc, TIn, TAcc> Apply<TAcc>(ReductionStatus status, Func<TAcc, TOut, TAcc> reducer)
+        public Func<TAcc, TIn, TAcc> Transform<TAcc>(ReductionStatus status, Func<TAcc, TOut, TAcc> reducer)
         {
             return (acc, source) => reducer(acc, _selector(source));
         }

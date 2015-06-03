@@ -11,7 +11,7 @@ namespace Transducers.Net
             _predicate = predicate;
         }
 
-        public Func<TAcc, TSource, TAcc> Apply<TAcc>(ReductionStatus status, Func<TAcc, TSource, TAcc> reducer)
+        public Func<TAcc, TSource, TAcc> Transform<TAcc>(ReductionStatus status, Func<TAcc, TSource, TAcc> reducer)
         {
             return (acc, source) => _predicate(source) ? reducer(acc, source) : acc;
         }

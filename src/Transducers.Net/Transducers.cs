@@ -41,7 +41,7 @@ namespace Transducers.Net
             var sourceEnum = source.GetEnumerator();
             var status = new ReductionStatus();
             var res = seed;
-            var red = transducer.Apply(status, reducer);
+            var red = transducer.Transform(status, reducer);
             while (!status.Complete && sourceEnum.MoveNext()) {
                 res = red(res, sourceEnum.Current);
             }

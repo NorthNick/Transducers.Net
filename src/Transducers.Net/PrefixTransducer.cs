@@ -11,7 +11,7 @@ namespace Transducers.Net
             _prefixComplete = prefixComplete;
         }
 
-        public Func<TAcc, TSource, TAcc> Apply<TAcc>(ReductionStatus status, Func<TAcc, TSource, TAcc> reducer)
+        public Func<TAcc, TSource, TAcc> Transform<TAcc>(ReductionStatus status, Func<TAcc, TSource, TAcc> reducer)
         {
             var prefixComplete = _prefixComplete();
             return (acc, source) => {
