@@ -15,7 +15,7 @@ namespace Transducers.Net
 
         public Func<TAcc, TIn, TAcc> Apply<TAcc>(ReductionStatus status, Func<TAcc, TOut, TAcc> reducer)
         {
-            return (acc, source) => _transducer1.Apply(status, _transducer2.Apply(status, reducer))(acc, source);
+            return _transducer1.Apply(status, _transducer2.Apply(status, reducer));
         }
     }
 }

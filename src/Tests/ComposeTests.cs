@@ -17,5 +17,15 @@ namespace Tests
             var expected = new List<int> {7, 11};
             Assert.That(output, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void ComposeWithTake()
+        {
+            var transducer = Select<int, int>(x => x + 1).Compose(Take<int>(1));
+            var input = TestUtils.UpTo(5);
+            var output = input.Transduce(transducer, (x, y) => x + y, 0);
+            int expected = 1;
+            Assert.That(output, Is.EqualTo(expected));
+        }
     }
 }

@@ -1,8 +1,8 @@
 # Transducers.Net
 Transducers.Net is a [Transducers](http://clojure.org/transducers) library for .NET, written in C#.
 It is currently an experiment for my own benefit to help me understand them, but it is a fully functional
-library, though performance is not as good as I would like, being a few times slower than the equivalent
-LINQ code.
+library, with decent performance. Initial timings suggest that it is faster than the equivalent LINQ code for lists
+up to 100,000 elements, but there has been no thorough performance testing.
 
 Documentation is yet to come, so take a look at the Tests project to see some transducers in use.
 

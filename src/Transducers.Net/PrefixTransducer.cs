@@ -15,8 +15,6 @@ namespace Transducers.Net
         {
             var prefixComplete = _prefixComplete();
             return (acc, source) => {
-                // TODO - decide whether to include this
-                //if (status.Complete) return acc;
                 if (prefixComplete(source)) {
                     status.Complete = true;
                     return acc;
