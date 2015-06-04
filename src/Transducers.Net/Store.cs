@@ -2,7 +2,7 @@
 
 namespace Transducers.Net
 {
-    class Store<TValue>
+    internal class Store<TValue>
     {
         public TValue Value { get; private set; }
 

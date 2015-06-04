@@ -48,5 +48,21 @@ namespace Transducers.Net
             return res;
         }
 
+        public static IEnumerable<TOut> Transduce<TIn, TOut>(this IEnumerable<TIn> source, ITransducer<TIn, TOut> transducer)
+        {
+            var sourceEnum = source.GetEnumerator();
+            var status = new ReductionStatus();
+            var red = transducer.Transform<Optional<TOut>>(status, Enumerator);
+            while (sourceEnum.MoveNext()) {
+                var res = red(new Optional<TOut>(), sourceEnum.Current);
+                if (status.Complete) break;
+                if (res.HasValue) yield return res.Value;
+            }
+        }
+
+        private static Optional<TSource> Enumerator<TSource>(Optional<TSource> acc, TSource source)
+        {
+            return new Optional<TSource>(source);
+        }
     }
 }

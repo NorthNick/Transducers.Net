@@ -2,7 +2,7 @@
 
 namespace Transducers.Net
 {
-    class PrefixTransducer<TSource> : ITransducer<TSource, TSource>
+    internal class PrefixTransducer<TSource> : ITransducer<TSource, TSource>
     {
         private readonly Func<Func<TSource, bool>> _prefixComplete;
 
