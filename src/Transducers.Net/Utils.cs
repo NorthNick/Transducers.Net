@@ -9,5 +9,10 @@ namespace Transducers.Net
             acc.Add(source);
             return acc;
         }
+
+        public static Optional<TSource> Enumerator<TSource>(Optional<TSource> acc, TSource source)
+        {
+            return new Optional<TSource>(source);
+        }
     }
 }
