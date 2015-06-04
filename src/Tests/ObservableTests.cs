@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
 using static Transducers.Net.Reactive.Transducers;
 using static Transducers.Net.Transducers;
 
@@ -17,6 +18,16 @@ namespace Tests
             var input = Observable.Range(1, 10);
             var output = input.Transduce(transducer);
             var expected = Enumerable.Range(1, 5);
+            Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void OverTakeTest()
+        {
+            var transducer = Take<int>(15);
+            var input = Observable.Range(1, 10);
+            var output = input.Transduce(transducer);
+            var expected = Enumerable.Range(1, 10);
             Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
         }
 
@@ -71,6 +82,46 @@ namespace Tests
             var input = Observable.Range(1, 5);
             var output = input.Transduce(transducer);
             var expected = new[] {5, 7};
+            Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void SumTest()
+        {
+            var transducer = Where<int>(x => true);
+            var input = Observable.Range(1, 6);
+            var output = input.Transduce(transducer, (x, y) => x + y, 0);
+            var expected = new[] {21};
+            Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void SumTakeTest()
+        {
+            var transducer = Take<int>(4);
+            var input = Observable.Range(1, 6);
+            var output = input.Transduce(transducer, (x, y) => x + y, 0);
+            var expected = new[] { 10 };
+            Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void SumOverTakeTest()
+        {
+            var transducer = Take<int>(10);
+            var input = Observable.Range(1, 6);
+            var output = input.Transduce(transducer, (x, y) => x + y, 0);
+            var expected = new[] { 21 };
+            Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void SumComposeTest()
+        {
+            var transducer = Select<int, int>(x => x + 1).Then(Where<int>(x => x < 4));
+            var input = Observable.Range(1, 6);
+            var output = input.Transduce(transducer, (x, y) => x + y, 0);
+            var expected = new[] { 5 };
             Assert.That(output.ToEnumerable(), Is.EqualTo(expected));
         }
     }

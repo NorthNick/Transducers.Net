@@ -31,14 +31,14 @@ namespace Transducers.Net
             return new WhereTransducer<TSource>(predicate);
         }
 
-        public static ITransducer<TIn, TOut> Then<TIn, TMid, TOut>(this ITransducer<TIn, TMid> transducer1, ITransducer<TMid, TOut> transducer2)
+        public static ITransducer<TIn, TOut> Then<TIn, TMid, TOut>(this ITransducer<TIn, TMid> first, ITransducer<TMid, TOut> next)
         {
-            return new ComposeTransducer<TIn, TMid, TOut>(transducer1, transducer2);
+            return new ComposeTransducer<TIn, TMid, TOut>(first, next);
         }
 
-        public static ITransducer<TIn, TOut> Compose<TIn, TMid, TOut>(this ITransducer<TIn, TMid> transducer1, ITransducer<TMid, TOut> transducer2)
+        public static ITransducer<TIn, TOut> Compose<TIn, TMid, TOut>(this ITransducer<TIn, TMid> first, ITransducer<TMid, TOut> next)
         {
-            return new ComposeTransducer<TIn,TMid,TOut>(transducer1, transducer2);
+            return new ComposeTransducer<TIn,TMid,TOut>(first, next);
         }
 
         public static TAcc Transduce<TAcc, TIn, TOut>(this IEnumerable<TIn> source, ITransducer<TIn, TOut> transducer, Func<TAcc, TOut, TAcc> reducer, TAcc seed)

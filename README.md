@@ -46,9 +46,10 @@ Alternatively:
 var input = Enumerable.Range(1, 15);
 var output = input.Transduce(transducer (x, y) => x + y, 0);
 ```
-behaves like LINQ Aggregate by summing the values to give 12.
+behaves like LINQ Aggregate by summing the values to give 12. When the input is an IObservable,
+the output is also an IObservable, of length one, where the single element is the result.
 
-#Source code
+##Source code
 The main library is written in C#5 and should work in VS2013 and above. The Tests (and examples above) use the new
 C# "using static" statement, so only work with VS2015 and above. In C#5, you need to qualify the transducer methods
 e.g. Transducers.Select.
