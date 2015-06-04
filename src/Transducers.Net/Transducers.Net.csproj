@@ -43,6 +43,7 @@
     <Compile Include="SelectTransducer.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="ITransducer.cs" />
+    <Compile Include="SuffixTransducer.cs" />
     <Compile Include="Transducers.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WhereTransducer.cs" />

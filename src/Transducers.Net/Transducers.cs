@@ -10,6 +10,22 @@ namespace Transducers.Net
             return new SelectTransducer<TIn, TOut>(selector);
         }
 
+        public static ITransducer<TSource, TSource> Skip<TSource>(int n)
+        {
+            return new SuffixTransducer<TSource>(() => {
+                var counter = new Store<int>(n);
+                return source => counter.PostApply(x => x - 1) <= 0;
+            });
+        }
+
+        public static ITransducer<TSource, TSource> SkipWhile<TSource>(Func<TSource, bool> predicate)
+        {
+            return new SuffixTransducer<TSource>(() => {
+                var taking = new Store<bool>(true);
+                return source => !taking.PreApply(b => b && predicate(source));
+            });
+        }
+
         public static ITransducer<TSource, TSource> Take<TSource>(int n)
         {
             return new PrefixTransducer<TSource>(() => {

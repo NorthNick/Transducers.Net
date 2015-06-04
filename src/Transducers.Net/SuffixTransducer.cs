@@ -2,11 +2,11 @@
 
 namespace Transducers.Net
 {
-    internal class PrefixTransducer<TSource> : ITransducer<TSource, TSource>
+    internal class SuffixTransducer<TSource> : ITransducer<TSource, TSource>
     {
         private readonly Func<Func<TSource, bool>> _prefixCompleteFactory;
 
-        public PrefixTransducer(Func<Func<TSource, bool>> prefixCompleteFactory)
+        public SuffixTransducer(Func<Func<TSource, bool>> prefixCompleteFactory)
         {
             _prefixCompleteFactory = prefixCompleteFactory;
         }
@@ -14,12 +14,16 @@ namespace Transducers.Net
         public Func<TAcc, TSource, TAcc> Transform<TAcc>(ReductionStatus status, Func<TAcc, TSource, TAcc> reducer)
         {
             var prefixComplete = _prefixCompleteFactory();
+            bool skipping = true;
             return (acc, source) => {
-                if (prefixComplete(source)) {
-                    status.Complete = true;
+                if (!skipping) {
+                    return reducer(acc, source);
+                } else if (prefixComplete(source)) {
+                    skipping = false;
+                    return reducer(acc, source);
+                } else {
                     return acc;
                 }
-                return reducer(acc, source);
             };
         }
     }

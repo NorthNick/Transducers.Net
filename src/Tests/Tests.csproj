@@ -69,6 +69,7 @@
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectTests.cs" />
+    <Compile Include="SkipTests.cs" />
     <Compile Include="TakeTests.cs" />
     <Compile Include="TestUtils.cs" />
   </ItemGroup>
