@@ -31,6 +31,11 @@ namespace Transducers.Net
             return new WhereTransducer<TSource>(predicate);
         }
 
+        public static ITransducer<TIn, TOut> Then<TIn, TMid, TOut>(this ITransducer<TIn, TMid> transducer1, ITransducer<TMid, TOut> transducer2)
+        {
+            return new ComposeTransducer<TIn, TMid, TOut>(transducer1, transducer2);
+        }
+
         public static ITransducer<TIn, TOut> Compose<TIn, TMid, TOut>(this ITransducer<TIn, TMid> transducer1, ITransducer<TMid, TOut> transducer2)
         {
             return new ComposeTransducer<TIn,TMid,TOut>(transducer1, transducer2);

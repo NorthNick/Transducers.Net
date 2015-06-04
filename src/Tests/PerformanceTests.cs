@@ -12,7 +12,7 @@ namespace Tests
         [Test]
         public void SelectWhereTakeTest()
         {
-            var transducer = Select<int, int>(x => x + 1).Compose(Where<int>(x => x % 2 == 0).Compose(Take<int>(100000000)));
+            var transducer = Select<int, int>(x => x + 1).Then(Where<int>(x => x % 2 == 0).Then(Take<int>(100000000)));
             var input = TestUtils.UpTo(100000);
             var trSw = Stopwatch.StartNew();
             var trOutput = input.Transduce(transducer, (x, y) => x + y, 0);

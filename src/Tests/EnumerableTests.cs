@@ -32,7 +32,7 @@ namespace Tests
         [Test]
         public void LazyComposeTest()
         {
-            var transducer = Select<int, int>(x => x * 2).Compose(Take<int>(10));
+            var transducer = Select<int, int>(x => x * 2).Then(Take<int>(10));
             var input = AllInts();
             var output = input.Transduce(transducer);
             var expected = TestUtils.UpTo(9).Select(x => x * 2);
