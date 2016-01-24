@@ -2,6 +2,9 @@ configuration:
   - Release
   - Debug
 
+before_build:
+  nuget restore
+
 build:
   project: ./src/Transducers.Net.sln
 
