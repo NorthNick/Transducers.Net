@@ -54,9 +54,13 @@ the output is also an IObservable, of length one, where the single element is th
 
 ##Source code
 The main library is written in C#5 and should work in VS2013 and above. The Tests (and examples above) use the new
-C# "using static" statement, so only work with VS2015 and above. In C#5, you need to qualify the transducer methods
+C#6 "using static" statement, so only work with VS2015 and above. In C#5, you need to qualify the transducer methods
 e.g. Transducers.Select.
 
-The library consists of two projects: Transducers.Net and Transducers.Net.Reactive. The latter contains only the
+The library consists of two main projects: Transducers.Net and Transducers.Net.Reactive. The latter contains only the
 implementations of the Transduce method for IObservables, so is not needed if you are not using the Reactive
 Extensions. The separate projects saves pulling in the Reactive Extensions NuGet packages if they are not needed.
+
+There is also a Tests project, containing the NUnit tests. At the time of writing Travis - the CI system in use -
+gives an ambiguous reference error when compiling the C#6 code, so Tests is compiled only under the Debug
+configuration,
