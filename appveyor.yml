@@ -3,7 +3,7 @@ configuration:
   - Debug
 
 before_build:
-  nuget restore
+  nuget restore ./src/Transducers.Net.sln
 
 build:
   project: ./src/Transducers.Net.sln
@@ -11,3 +11,9 @@ build:
 test:
   assemblies:
     - Tests.dll
+
+notifications:
+  - provider: Slack
+    auth_token:
+      secure: xoxp-3423826649-3423826655-19299331236-06018cef84
+    channel: git
