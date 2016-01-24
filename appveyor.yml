@@ -1,0 +1,10 @@
+configuration:
+  - Release
+  - Debug
+
+build:
+  project: ./src/Transducers.Net.sln
+
+test:
+  assemblies:
+    - Tests.dll
