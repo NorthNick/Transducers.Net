@@ -1,7 +1,7 @@
 # Transducers.Net
 Transducers.Net is a [Transducers](http://clojure.org/transducers) library for .NET, written in C#.
 
-[![Build Status](https://travis-ci.org/NorthNick/Transducers.Net.svg?branch=master)](https://travis-ci.org/NorthNick/Transducers.Net)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/NorthNick/Transducers.Net?branch=master&svg=true)](https://ci.appveyor.com/project/NorthNick/transducers-net)
 
 Transducers.Net is currently an experiment for my own benefit to help me understand them, but it is a fully functional
 library, with decent performance. Initial timings suggest that it is faster than the equivalent LINQ code for lists
@@ -61,6 +61,5 @@ The library consists of two main projects: Transducers.Net and Transducers.Net.R
 implementations of the Transduce method for IObservables, so is not needed if you are not using the Reactive
 Extensions. The separate projects saves pulling in the Reactive Extensions NuGet packages if they are not needed.
 
-There is also a Tests project, containing the NUnit tests. At the time of writing Travis - the CI system in use -
-gives an ambiguous reference error when compiling the C#6 code, so Tests is compiled only under the Debug
-configuration,
+There is also a Tests project, containing the NUnit tests. These are executed as part of the
+[Appveyor CI build](https://ci.appveyor.com/project/NorthNick/transducers-net), whose status can be seen above.
